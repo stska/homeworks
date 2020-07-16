@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.ImageDecoder;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +24,18 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.security.Policy;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link InitialFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class InitialFragment extends Fragment {
-
-
+    OnItemClickedListener mListener;
+    public interface OnItemClickedListener {
+        public void OnItemClicked(Policy.Parameters params);
+    }
 
   WeatherInfo weatherInfo = new WeatherInfo();
 
@@ -94,12 +100,17 @@ public class InitialFragment extends Fragment {
     public void onAttach(Activity activity) {
         myContext=(FragmentActivity) activity;
         super.onAttach(activity);
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //getTargetFragment().onActivityResult(getTargetRequestCode(),111,getActivity().getIntent());
+
+
         View view = inflater.inflate(R.layout.initial_fragment, container, false);
         final SearchView searchView = (SearchView) view.findViewById(R.id.searchViewId);
 
@@ -166,6 +177,7 @@ public class InitialFragment extends Fragment {
 
 
 
+
         /*
         FragmentC fragmentC = FragmentC.newInstance();
 fragmentC.setTargetFragment(FragmentB.this, REQUEST_CODE);
@@ -175,8 +187,13 @@ getFragmentManager().beginTransaction().replace(R.id.container, fragmentC).commi
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+         if(resultCode == 111){
+                if(requestCode == 111){
+                    Toast.makeText(getActivity(), data.getStringExtra("test"), Toast.LENGTH_LONG).show();
+                }
+            }
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

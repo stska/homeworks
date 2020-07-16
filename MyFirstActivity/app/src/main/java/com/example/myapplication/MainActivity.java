@@ -1,16 +1,26 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import java.security.Policy;
 
 //import androidx.appcompat.widget.SearchView;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements InitialFragment.OnItemClickedListener{
+     @Override
+     public void OnItemClicked(Policy.Parameters recieveparams){
+         Toast.makeText(getApplicationContext(), "AAAAAAAAAAAAAAAAAAAA)", Toast.LENGTH_SHORT).show();
+     }
     //данные для подргуки в избранное. Особой роли не играбт, так как делал для тренировки. Потом буду подгружать туда данные из поиска
     public void testMeth(){
 
@@ -26,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -38,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Toast.makeText(getApplicationContext(), "onResumer()", Toast.LENGTH_SHORT).show();
         Log.d(MainActivity.class.getName(), "onResume");
+
 
     }
 
@@ -65,9 +78,12 @@ public class MainActivity extends AppCompatActivity {
             //additional code
         } else {
             getSupportFragmentManager().popBackStack();
+
+
         }
 
     }
+
 
 
 

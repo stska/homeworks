@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -42,6 +44,12 @@ public class CityWeatherDescription extends Fragment {
         // Required empty public constructor
     }
 
+
+
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(int id);
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -90,6 +98,11 @@ public class CityWeatherDescription extends Fragment {
 
             @Override
             public void onClick(View view) {
+               // Intent intent = new Intent(myContext,CityWeatherDescription.class);
+              //  intent.putExtra("test","heloooooooooooooo");
+               // getTargetFragment().onActivityResult(getTargetRequestCode(),111,intent);
+               // getFragmentManager().popBackStack();
+
                 Uri uri = Uri.parse("https://yandex.ru/pogoda/" + weatherInfo.getCityNamesArray()[mParam1].toLowerCase());
                 Intent browser = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(browser);
@@ -113,23 +126,45 @@ public class CityWeatherDescription extends Fragment {
             });
         }
 
+        //sendResult(111);
+
+
         cityNameText.setText(weatherInfo.getListOfCities()[mParam1]);
         cityTempText.setText(weatherInfo.getTemperatureArray()[mParam1]);
         cityHumidText.setText(weatherInfo.getHumidityArray()[mParam1]);
         cityPressureText.setText(weatherInfo.getPressureArray()[mParam1]);
         cityWindSpeedText.setText(weatherInfo.getWindArray()[mParam1]);
 
+
+
+         mListener = (InitialFragment.OnItemClickedListener) this.getContext();
         cityWeatherLayout.setBackground(getActivity().getApplication().getResources().getDrawable(R.drawable.imagebg));
         initRecycleView(view);
         return view;
 
+
     }
+    InitialFragment.OnItemClickedListener mListener;
+
+
+  //  private void sendResult(int resultCode) {
+      //  if (getTargetFragment() == null) {
+        //    return;
+    //    }
+       // Intent intent = new Intent();
+       // intent.putExtra("test", 111);
+       // getTargetFragment() .onActivityResult(getTargetRequestCode(), resultCode, intent);
+  //  }
+
     private void initRecycleView(View view){
 
         RecyclerView recyclerView = view.findViewById(R.id.weatherRecyleViewFiveDays);
         recyclerView.setHasFixedSize(true);
 
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(), LinearLayout.HORIZONTAL & LinearLayout.VERTICAL);
+       // getTargetFragment().onActivityResult(getTargetRequestCode(),Activity.RESULT_OK,new Intent().putExtra("datafrom C", "datafrom C"));
+
+
+    DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(), LinearLayout.HORIZONTAL & LinearLayout.VERTICAL);
         itemDecoration.setDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.separator,null));
         recyclerView.addItemDecoration(itemDecoration);
 
