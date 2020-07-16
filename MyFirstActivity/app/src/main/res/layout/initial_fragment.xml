@@ -8,77 +8,44 @@
     android:isScrollContainer="true"
     tools:context=".InitialFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--  <ScrollView
-        android:id="@+id/initialScrollView"
+    <ImageView
+        android:id="@+id/landscapeStartImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">   -->
+        android:layout_height="150dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/landscapeStartImage"
+        app:srcCompat="@drawable/landscape" />
 
-    <LinearLayout
-        android:id="@+id/initialLinearLayouyId"
+    <TextView
+        android:id="@+id/searchTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:text="@string/searchTitle"
+        android:textColor="#0E0E0E"
+        android:textSize="24sp" />
 
-        <ImageView
-            android:id="@+id/landscapeStartImage"
-            android:layout_width="match_parent"
-            android:layout_height="267dp"
-            android:contentDescription="@string/landscapeStartImage"
-            app:srcCompat="@drawable/landscape" />
+    <SearchView
+        android:id="@+id/searchViewId"
+        style="@android:style/Widget.Material.SearchView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="#E8F3E3"
+        android:forceDarkAllowed="true"
+        android:imeOptions="actionSearch"
+        android:queryHint="Input city"
+        app:actionViewClass="android.support.v7.widget.SearchView">
 
-        <TextView
-            android:id="@+id/searchTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/searchTitle"
-            android:textColor="#0E0E0E"
-            android:textSize="24sp" />
+    </SearchView>
 
-
-        <SearchView
-            android:id="@+id/searchViewId"
-            style="@android:style/Widget.Material.SearchView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="50dp"
-            android:background="#E8F3E3"
-            android:imeOptions="actionSearch"
-            android:queryHint="Input city"
-            app:actionViewClass="android.support.v7.widget.SearchView">
-
-        </SearchView>
-
-        <!--  <TextView
-                android:id="@+id/textTestExample"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="15dp"
-                android:text="TextView"
-                android:textColor="#835A7F"
-                android:textSize="18sp"
-                android:textStyle="bold" />    -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cityWeatherRecycleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="20dp" />
-        <!--  <ListView
-                android:id="@+id/favListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                />  -->
-
-
-    </LinearLayout>
-    <!-- </ScrollView> -->
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cityWeatherRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:paddingBottom="20dp" />
 </FrameLayout>
